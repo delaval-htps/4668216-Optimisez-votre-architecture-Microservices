@@ -9,6 +9,16 @@
             "projectName": "clientui",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MproduitsApplication<mproduits>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.mproduits.MproduitsApplication",
+            "projectName": "mproduits",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
