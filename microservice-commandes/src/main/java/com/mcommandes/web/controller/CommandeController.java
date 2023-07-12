@@ -1,6 +1,5 @@
 package com.mcommandes.web.controller;
 
-
 import com.mcommandes.dao.CommandesDao;
 import com.mcommandes.model.Commande;
 import com.mcommandes.web.exceptions.CommandeNotFoundException;
@@ -11,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class CommandeController {
@@ -18,23 +20,31 @@ public class CommandeController {
     @Autowired
     CommandesDao commandesDao;
 
-    @PostMapping (value = "/commandes")
-    public ResponseEntity<Commande> ajouterCommande(@RequestBody Commande commande){
+    @PostMapping(value = "/commandes")
+    public ResponseEntity<Commande> ajouterCommande(@RequestBody Commande commande) {
 
         Commande nouvelleCommande = commandesDao.save(commande);
 
-        if(nouvelleCommande == null) throw new ImpossibleAjouterCommandeException("Impossible d'ajouter cette commande");
+        if (nouvelleCommande == null)
+            throw new ImpossibleAjouterCommandeException("Impossible d'ajouter cette commande");
 
-        return new ResponseEntity<Commande>(commande, HttpStatus.CREATED);
+        return new ResponseEntity<>(commande, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/commandes/{id}")
-    public Optional<Commande> recupererUneCommande(@PathVariable int id){
+    public Optional<Commande> recupererUneCommande(@PathVariable int id) {
 
         Optional<Commande> commande = commandesDao.findById(id);
 
-        if(!commande.isPresent()) throw new CommandeNotFoundException("Cette commande n'existe pas");
+        if (!commande.isPresent())
+            throw new CommandeNotFoundException("Cette commande n'existe pas");
 
         return commande;
+    }
+
+    @PutMapping(value = "/commandes")
+    public void updateCommande(@RequestBody Commande commande) {
+
+        commandesDao.save(commande);
     }
 }

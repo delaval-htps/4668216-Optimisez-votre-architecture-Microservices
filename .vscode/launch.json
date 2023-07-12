@@ -8,7 +8,8 @@
             "mainClass": "com.clientui.clientui.ClientuiApplication",
             "projectName": "clientui",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=40529 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=clientui"
         },
         {
             "type": "java",
@@ -17,6 +18,27 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.mproduits.MproduitsApplication",
             "projectName": "mproduits",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=37153 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=mproduits"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MpaiementApplication<mpaiement>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.mpaiement.MpaiementApplication",
+            "projectName": "mpaiement",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-McommandesApplication<mcommandes>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.mcommandes.McommandesApplication",
+            "projectName": "mcommandes",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

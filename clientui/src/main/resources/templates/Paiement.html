@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mcommerce</title>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center">Application Mcommerce</h1>
+    <div class="row">
+      <div class="col-md-4 mx-auto mt-5 text-center">
+        <img th:src="${produit.image}" class="card-img-top" alt="image-produit" />
+        <p th:text="${produit.titre}" class="font-weight-bold"></p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="row">#</th>
+              <th>Date</th>
+              <th>Quantity</th>
+              <th>Prix Unitaire</th>
+              <th>Prix Total</th>
+              <th>Réglée</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row" th:text="${commande.id}"></td>
+              <td th:text="${commande.dateCommande}"></td>
+              <td th:text="${commande.quantite}"></td>
+              <td th:text="${produit.prix}"></td>
+              <td th:text="${prix}"></td>
+              <td th:text="${commande.commandePayee}"></td>
+              <td ><i class="fa fa-crosshairs" aria-hidden="true" th:if="${#bools.isTrue(commande.commandePayee)}"></td>
+                <td class="font-weight-bold"><a name="paiement" id="paiement" class="btn btn-primary" th:href="@{|/payer-commande/${commande.id}/${prix}|}" role="button" >PAIEMENT</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>"
+</body>
+
+</html>
