@@ -81,16 +81,17 @@ public class ClientController {
     // ******************* endpoint for paiement ********************
 
     @GetMapping(value = "/payer-commande/{id_commande}/{prixCommande}")
-    public String payerCommande(@PathVariable(value = "id_commande") int idCommande,@PathVariable(value = "prixCommande")double prixCommande, Model model) {
+    public String payerCommande(@PathVariable(value = "id_commande") int idCommande,
+            @PathVariable(value = "prixCommande") double prixCommande, Model model) {
         PaiementBean paiementAExecuter = new PaiementBean();
         paiementAExecuter.setIdCommande(idCommande);
         paiementAExecuter.setMontant(prixCommande);
         paiementAExecuter.setNumeroCarte(numeroCarte());
-        
 
         Boolean paiementAccepte = false;
 
-        ResponseEntity<PaiementBean> paiementResponse  = paiementProxy.payerUneCommande(paiementAExecuter);
+        ResponseEntity<PaiementBean> paiementResponse = paiementProxy.payerUneCommande(paiementAExecuter);
+
         if (paiementResponse.getStatusCode() == HttpStatus.CREATED) {
             paiementAccepte = true;
         }
@@ -100,7 +101,6 @@ public class ClientController {
         return "Confirmation";
 
     }
-
 
     private Long numeroCarte() {
         return ThreadLocalRandom.current().nextLong(10000000L, 90000000L);

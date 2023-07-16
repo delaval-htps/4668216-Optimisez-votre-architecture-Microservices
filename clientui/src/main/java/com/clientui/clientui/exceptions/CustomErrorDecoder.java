@@ -38,6 +38,10 @@ public class CustomErrorDecoder implements ErrorDecoder {
             case 400:
                 return new ProductBadRequestException(
                         initialErrorMessage != null ? initialErrorMessage : "requête incorrecte");
+            case 409:
+                return new PaiementConflictException(
+                        initialErrorMessage != null ? initialErrorMessage : "paiement impossible");
+                
             default:
                 return defaultErrorDecoder.decode(methodKey, response);
         }
@@ -55,6 +59,7 @@ public class CustomErrorDecoder implements ErrorDecoder {
         private String error;
         private String message;
         private String path;
+        private Long code;
 
     }
 }

@@ -15,6 +15,7 @@ import com.mpaiement.model.Paiement;
 import com.mpaiement.proxies.MicroserviceCommandesProxy;
 import com.mpaiement.web.exceptions.PaiementExistantException;
 import com.mpaiement.web.exceptions.PaiementImpossibleException;
+import com.mpaiement.web.exceptions.config.GlobalErrorCode;
 
 
 @RestController
@@ -32,13 +33,13 @@ public class PaiementController {
 
         //Vérifions s'il y a déjà un paiement enregistré pour cette commande
         Paiement paiementExistant = paiementDao.findByidCommande(paiement.getIdCommande());
-        if(paiementExistant != null) throw new PaiementExistantException("Cette commande est déjà payée");
+        if(paiementExistant != null) throw new PaiementExistantException("Cette commande est déjà payée",GlobalErrorCode.ERROR_PAIEMENT_EXISTANT);
 
         //Enregistrer le paiement
         Paiement nouveauPaiement = paiementDao.save(paiement);
 
 
-        if(nouveauPaiement == null) throw new PaiementImpossibleException("Erreur, impossible d'établir le paiement, réessayez plus tard");
+        if(nouveauPaiement == null) throw new PaiementImpossibleException("Erreur, impossible d'établir le paiement, réessayez plus tard",GlobalErrorCode.ERROR_PAIEMENT_IMPOSSIBLE);
 
 
 
@@ -51,7 +52,7 @@ public class PaiementController {
             commande.setCommandePayee(true);
             commandeProxy.updateCommande(commande);
         } else {
-            throw new PaiementImpossibleException("Erreur la commande correspondante n'est pas accessible!");
+            throw new PaiementImpossibleException("Erreur, impossible de retrouver la commande correspondante!",GlobalErrorCode.ERROR_PAIEMENT_IMPOSSIBLE);
         }
 
 
