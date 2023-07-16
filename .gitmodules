@@ -1,0 +1,3 @@
+[submodule "mcommerce-config-repo"]
+	path = mcommerce-config-repo
+	url = git@github.com:delaval-htps/mcommerce-config-repo.git

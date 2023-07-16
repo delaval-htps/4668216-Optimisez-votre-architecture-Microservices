@@ -1,5 +1,6 @@
 package com.mproduits.web.controller;
 
+import com.mproduits.configuration.ApplicationPropertiesConfiguration;
 import com.mproduits.dao.ProductDao;
 import com.mproduits.model.Product;
 import com.mproduits.web.exceptions.ProductNotFoundException;
@@ -17,6 +18,9 @@ public class ProductController {
     @Autowired
     ProductDao productDao;
 
+    @Autowired
+    private ApplicationPropertiesConfiguration appPropertiesConfig;
+
     // Affiche la liste de tous les produits disponibles
     @GetMapping(value = "/produits")
     public List<Product> listeDesProduits(){
@@ -25,7 +29,7 @@ public class ProductController {
 
         if(products.isEmpty()) throw new ProductNotFoundException("Aucun produit n'est disponible à la vente");
 
-        return products;
+        return products.subList(0, appPropertiesConfig.getLimitDeProduits());
 
     }
 
