@@ -50,6 +50,17 @@
             "mainClass": "com.mcommerce.configserver.ConfigServerApplication",
             "projectName": "config-server",
             "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=33937 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=config-server"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EurekaServerApplication<eureka-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.mcommerce.eurekaserver.EurekaServerApplication",
+            "projectName": "eureka-server",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]
